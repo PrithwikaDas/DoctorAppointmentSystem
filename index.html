@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #90a9c8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0a0e47;
+            color: #f0ff19;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        header span#close {
+            font-size: 30px;
+            color: red;
+            cursor: pointer;
+        }
+        header {
+        position: relative;
+    }
+    
+    #emergency-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: red;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #emergency-button:hover {
+        background-color: #ff0000;
+    }
+
+
+        nav {
+            background-color: #532828;
+            color: #fff;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #5b3bae;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #338565;
+        }
+
+      
+
+        #book-appointment,
+        #appointments {
+            display: none;
+        }
+
+        #appointments-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        #appointments-list li {
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        footer {
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <header>
+            <h1>Doctor Appointment System <span id="close" >+</span></h1>
+            <button id="emergency-button" onclick="callEmergency()">Call Emergency</button>
+        
+        </header>
+        
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showBookAppointment()">Book Appointment</a></li>
+            <li><a href="#" onclick="showAppointments()">Appointments</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div id="book-appointment">
+          
+         
+            <h2>Book Your Appointment</h2>
+            <form id="appointment-form">
+                <label for="name">Full name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="doctor-type">Select Doctor Type:</label>
+                <select id="doctor-type" name="doctor-type">
+                    <optgroup label="Dentist">
+                        <option value="Dr. Malhotra">Dr. Malhotra</option>
+                        <option value="Dr. Fernandez">Dr. Das</option>
+                    </optgroup>
+                    <optgroup label="Cardiologist">
+                        <option value="Dr. Smith">Dr. Smith</option>
+                        <option value="Dr. Johnson">Dr. Johnson</option>
+                    </optgroup>
+                    <optgroup label="Dermatologist">
+                        <option value="Dr. White">Dr. White</option>
+                        <option value="Dr. Brown">Dr. Brown</option>
+                    </optgroup>
+                    <optgroup label="Surgeon">
+                        <option value="Dr. Lee">Dr. Lee</option>
+                        <option value="Dr. Kim">Dr. Kim</option>
+                    </optgroup>
+                    <optgroup label="General Practitioner">
+                        <option value="Dr. Anderson">Dr. Anderson</option>
+                        <option value="Dr. Clark">Dr. Clark</option>
+                    </optgroup>
+                    <optgroup label="Radiologist">
+                        <option value="Dr. Garcia">Dr. Garcia</option>
+                        <option value="Dr. Martinez">Dr. Martinez</option>
+                    </optgroup>
+                    <optgroup label="Psychiatrist">
+                        <option value="Dr. Wilson">Dr. Wilson</option>
+                        <option value="Dr. Hall">Dr. Hall</option>
+                    </optgroup>
+                    <optgroup label="Pediatrician">
+                        <option value="Dr. Taylor">Dr. Taylor</option>
+                        <option value="Dr. Walker">Dr. Walker</option>
+                    </optgroup>
+                    <optgroup label="Pathologist">
+                        <option value="Dr. Harris">Dr. Harris</option>
+                        <option value="Dr. King">Dr. King</option>
+                    </optgroup>
+                    <optgroup label="Urologist">
+                        <option value="Dr. Moore">Dr. Moore</option>
+                        <option value="Dr. Rivera">Dr. Rivera</option>
+                    </optgroup>
+                </select>
+                <label for="time">Select Time:</label>
+                <select id="time" name="time">
+                    <option value="9">9 AM</option>
+                    <option value="10">10 AM</option>
+                    <option value="11">11 AM</option>
+                    <option value="12">12 noon</option>
+                    <option value="1">1 PM</option>
+                    <option value="2">2 PM</option>
+                    <option value="3">3 PM</option>
+                    <option value="4">4 PM</option>
+                    <option value="5">5 PM</option>
+                    <option value="6">6 PM</option>
+                    <option value="7">7 PM</option>
+                    <option value="8">8 PM</option>
+                    <option value="9">9 PM</option>
+                 
+                </select>
+                <button type="button" onclick="bookAppointment()">Book Appointment</button>
+            </form>
+        </div>
+        <div id="appointment-message" style="color: red;"></div>
+    </div>
+        <div id="appointments">
+            <h2>Appointments</h2>
+            <ul id="appointments-list">
+                
+            </ul>
+        </div>
+    </main>
+    <footer>
+        &copy; 2023 Doctor Appointment System
+    </footer>
+    <script>
+        const appointmentsData = {}; // Data structure to store appointments
+
+        function showBookAppointment() {
+            document.getElementById('book-appointment').style.display = 'block';
+            document.getElementById('appointments').style.display = 'none';
+            document.getElementById('appointment-message').textContent = '';
+        }
+
+        function showAppointments() {
+            document.getElementById('book-appointment').style.display = 'none';
+            document.getElementById('appointments').style.display = 'block';
+            document.getElementById('appointment-message').textContent = '';
+        }
+
+        function bookAppointment() {
+            const name = document.getElementById('name').value;
+            const doctorType = document.getElementById('doctor-type').value;
+            const time = document.getElementById('time').value;
+
+            // Checking if the doctor is available at the selected time
+            if (appointmentsData[doctorType] && appointmentsData[doctorType][time]) {
+                document.getElementById('appointment-message').textContent =
+                    "I'm sorry, but the doctor is unavailable at this time as they already have another appointment scheduled.";
+                return;
+            }
+
+            // Saving the appointment data and display it in the appointments list
+            if (!appointmentsData[doctorType]) {
+                appointmentsData[doctorType] = {};
+            }
+            appointmentsData[doctorType][time] = name;
+
+            const appointmentsList = document.getElementById('appointments-list');
+            const appointmentItem = document.createElement('li');
+            appointmentItem.textContent = `Name: ${name}, Doctor: ${doctorType}, Time: ${time} AM`;
+            appointmentsList.appendChild(appointmentItem);
+
+            //Clearing the form fields
+            document.getElementById('name').value = '';
+            document.getElementById('doctor-type').value = 'Dr. Malhotra';
+            document.getElementById('time').value = '9';
+
+            //appointments section
+            showAppointments();
+            document.getElementById('appointment-message').textContent = '';
+
+
+            
+        }
+    </script>
+    <script>
+        //callEmergency at the global scope
+        function callEmergency() {
+            alert("Emergency services have been called.");
+        }
+
+    </script>
+    
+</body>
+</html>
